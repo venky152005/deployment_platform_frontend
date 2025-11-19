@@ -2,6 +2,8 @@ import { Plus } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { RepoCard } from "@/components/deployment/RepoCard";
 import { DashboardLayout } from "@/components/layout/DashboardLayout";
+import { useNavigate } from "react-router-dom";
+import { toast } from "sonner";
 
 // Mock data
 const mockRepos = [
@@ -54,6 +56,19 @@ const mockRepos = [
 ];
 
 const Dashboard = () => {
+  const navigate = useNavigate();
+
+  const handleNewProject = () => {
+    // Placeholder for create new project flow
+    // In a real app, this would open a modal or navigate to a setup wizard
+    toast.success("Redirecting to GitHub to select repository...");
+    // Simulate GitHub app installation/repo selection
+    setTimeout(() => {
+      // fetch('/repos/connect') 
+      console.log("Opening GitHub repository selector...");
+    }, 1000);
+  };
+
   return (
     <DashboardLayout>
       <div className="container mx-auto p-6 space-y-6">
@@ -64,7 +79,7 @@ const Dashboard = () => {
               Manage and deploy your repositories
             </p>
           </div>
-          <Button>
+          <Button onClick={handleNewProject}>
             <Plus className="mr-2 h-4 w-4" />
             New Project
           </Button>
