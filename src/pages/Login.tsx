@@ -4,9 +4,11 @@ import { Card, CardContent, CardDescription, CardFooter, CardHeader, CardTitle }
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 import { Separator } from "@/components/ui/separator";
-import { Link } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 
 const Login = () => {
+  const navigate = useNavigate();
+
   const handleGithubLogin = async () => {
     // Placeholder for GitHub OAuth
     console.log("Initiating GitHub OAuth...");
@@ -79,9 +81,12 @@ const Login = () => {
         <CardFooter className="flex justify-center">
           <p className="text-sm text-muted-foreground">
             Don't have an account?{" "}
-            <Link to="/signup" className="text-accent hover:underline">
+            <button
+              onClick={() => navigate("/signup")}
+              className="text-accent hover:underline"
+            >
               Sign up
-            </Link>
+            </button>
           </p>
         </CardFooter>
       </Card>
