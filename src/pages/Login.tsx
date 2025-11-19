@@ -12,12 +12,16 @@ const Login = () => {
   const handleGithubLogin = async () => {
     // Placeholder for GitHub OAuth
     console.log("Initiating GitHub OAuth...");
-    // fetch('/auth/github/login')
+    // Redirect to GitHub callback loading screen
+    navigate("/auth/github/callback");
   };
 
   const handleEmailLogin = async (e: React.FormEvent) => {
     e.preventDefault();
     console.log("Email login...");
+    // Placeholder API call: await fetch('/auth/login', { method: 'POST', body: ... })
+    // On success, navigate to dashboard
+    navigate("/dashboard");
   };
 
   return (
