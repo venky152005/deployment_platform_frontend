@@ -59,14 +59,8 @@ const Dashboard = () => {
   const navigate = useNavigate();
 
   const handleNewProject = () => {
-    // Placeholder for create new project flow
-    // In a real app, this would open a modal or navigate to a setup wizard
-    toast.success("Redirecting to GitHub to select repository...");
-    // Simulate GitHub app installation/repo selection
-    setTimeout(() => {
-      // fetch('/repos/connect') 
-      console.log("Opening GitHub repository selector...");
-    }, 1000);
+    // Navigate to GitHub connect screen
+    navigate("/connect/github");
   };
 
   return (

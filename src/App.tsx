@@ -5,6 +5,7 @@ import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 import { BrowserRouter, Routes, Route, Navigate } from "react-router-dom";
 import Login from "./pages/Login";
 import Signup from "./pages/Signup";
+import ConnectGitHub from "./pages/ConnectGitHub";
 import GitHubConnect from "./pages/GitHubConnect";
 import Dashboard from "./pages/Dashboard";
 import ProjectDetail from "./pages/ProjectDetail";
@@ -24,6 +25,7 @@ const App = () => (
           <Route path="/" element={<Navigate to="/login" replace />} />
           <Route path="/login" element={<Login />} />
           <Route path="/signup" element={<Signup />} />
+          <Route path="/connect/github" element={<ConnectGitHub />} />
           <Route path="/auth/github/callback" element={<GitHubConnect />} />
           <Route path="/dashboard" element={<Dashboard />} />
           <Route path="/projects" element={<Dashboard />} />
