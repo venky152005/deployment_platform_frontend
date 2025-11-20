@@ -119,7 +119,7 @@ const GitHubConnect = () => {
                                   setCreatingHookRepo(r.name);
                                   // Use full_name when provided (owner/name), otherwise fall back to name
                                   const repoIdentifier = (r as any).full_name ?? r.name;
-                                  const payload = { repoName: repoIdentifier };
+                                  const payload = { repoFullName: repoIdentifier };
                                   const resp = await axios.post(`${API_URL}/api/create/webhook`, payload, {
                                     headers: { Authorization: `Bearer ${token}` },
                                   });
