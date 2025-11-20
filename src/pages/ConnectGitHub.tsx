@@ -9,16 +9,18 @@ const ConnectGitHub = () => {
   const API_URL = import.meta.env.VITE_API_URL;
   const token = localStorage.getItem('token');
 
-  const handleConnectGitHub = () => {
+  const handleConnectGitHub = async() => {
     // Placeholder for GitHub OAuth initiation
     console.log("Initiating GitHub OAuth...");
     console.log("token:",token);
     try {
-      const response = axios.get(`${API_URL}/api/connect`,{
+      const response = await axios.get(`${API_URL}/api/connect`,{
         headers: {
           Authorization: `Bearer ${token}`
         }
-      })
+      });
+
+       window.location.href = response.data.url;
     } catch (error) {
       console.error("Github OAuth failed", error);
     }
