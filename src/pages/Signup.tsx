@@ -5,9 +5,16 @@ import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 import { Separator } from "@/components/ui/separator";
 import { useNavigate } from "react-router-dom";
+import axios from "axios";
+import React from "react";
 
 const Signup = () => {
   const navigate = useNavigate();
+  const [email, setEmail] = React.useState("");
+  const [password, setPassword] = React.useState("");
+  const [fullname, setFullName] = React.useState("");
+
+  const API_URL = import.meta.env.VITE_API_URL;
 
   const handleGithubSignup = async () => {
     console.log("Initiating GitHub OAuth...");
@@ -17,10 +24,22 @@ const Signup = () => {
 
   const handleEmailSignup = async (e: React.FormEvent) => {
     e.preventDefault();
-    console.log("Email signup...");
+    try{
+    const response = await axios.post(`${API_URL}/api/signup`,{
+      firstName: fullname.split('')[0],
+      lastName: fullname.split('')[1],
+      email: email,
+      password: password
+    });
+    if(response.status === 200){
+      console.log("Email signup...");
+      navigate("/dashboard");
+    }
+  }catch(error){
+    console.error("Registration failed", error);
+  }
     // Placeholder API call: await fetch('/auth/signup', { method: 'POST', body: ... })
     // On success, navigate to dashboard
-    navigate("/dashboard");
   };
 
   return (
@@ -61,6 +80,7 @@ const Signup = () => {
                 id="name"
                 type="text"
                 placeholder="John Doe"
+                onChange={(e) => setFullName(e.target.value)}
                 className="bg-secondary border-0"
               />
             </div>
@@ -71,6 +91,7 @@ const Signup = () => {
                 id="email"
                 type="email"
                 placeholder="name@example.com"
+                onChange={(e) => setEmail(e.target.value)}
                 className="bg-secondary border-0"
               />
             </div>
@@ -81,6 +102,7 @@ const Signup = () => {
                 id="password"
                 type="password"
                 placeholder="••••••••"
+                onChange={(e) => setPassword(e.target.value)}
                 className="bg-secondary border-0"
               />
             </div>

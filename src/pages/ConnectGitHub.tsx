@@ -2,17 +2,26 @@ import { Github, Check } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
 import { useNavigate } from "react-router-dom";
+import axios from "axios";
 
 const ConnectGitHub = () => {
   const navigate = useNavigate();
+  const API_URL = import.meta.env.VITE_API_URL;
+  const token = localStorage.getItem('token');
 
   const handleConnectGitHub = () => {
     // Placeholder for GitHub OAuth initiation
     console.log("Initiating GitHub OAuth...");
-    // In production: window.location.href = '/auth/github/login'
-    
-    // For demo, redirect to the callback loading screen
-    navigate("/auth/github/callback");
+    console.log("token:",token);
+    try {
+      const response = axios.get(`${API_URL}/api/connect`,{
+        headers: {
+          Authorization: `Bearer ${token}`
+        }
+      })
+    } catch (error) {
+      console.error("Github OAuth failed", error);
+    }
   };
 
   const permissions = [
@@ -75,7 +84,7 @@ const ConnectGitHub = () => {
             </Button>
             <Button
               variant="ghost"
-              onClick={() => navigate("/dashboard")}
+              onClick={() => navigate("/auth/github/callback")}
               className="w-full"
             >
               Cancel

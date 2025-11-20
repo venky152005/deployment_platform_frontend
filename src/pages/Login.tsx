@@ -1,3 +1,4 @@
+import React from "react";
 import { Github } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardDescription, CardFooter, CardHeader, CardTitle } from "@/components/ui/card";
@@ -5,6 +6,7 @@ import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 import { Separator } from "@/components/ui/separator";
 import { useNavigate } from "react-router-dom";
+import axios from "axios";
 
 const Login = () => {
   const navigate = useNavigate();
@@ -16,12 +18,31 @@ const Login = () => {
     navigate("/auth/github/callback");
   };
 
+  const [email, setEmail] = React.useState("");
+  const [password, setPassword] = React.useState("");
+
+  const API_URL = import.meta.env.VITE_API_URL;
+
   const handleEmailLogin = async (e: React.FormEvent) => {
     e.preventDefault();
+    console.log("API:",API_URL);
     console.log("Email login...");
+    try {
+      const response = await axios.post(`${API_URL}/api/login`, {
+        email,
+        password,
+      });
+      if(response.status === 200){
+          console.log('token:',response.data.token);
+          localStorage.setItem('token',response.data.token)
+          console.log("Login successful");
+          navigate("/dashboard");
+      }
+    } catch (error) {
+      console.error("Login failed", error);
+    }
     // Placeholder API call: await fetch('/auth/login', { method: 'POST', body: ... })
     // On success, navigate to dashboard
-    navigate("/dashboard");
   };
 
   return (
@@ -61,7 +82,7 @@ const Login = () => {
               <Input
                 id="email"
                 type="email"
-                placeholder="name@example.com"
+                onChange={(e) => setEmail(e.target.value)}
                 className="bg-secondary border-0"
               />
             </div>
@@ -72,11 +93,12 @@ const Login = () => {
                 id="password"
                 type="password"
                 placeholder="••••••••"
+                onChange={(e) => setPassword(e.target.value)}
                 className="bg-secondary border-0"
               />
             </div>
 
-            <Button type="submit" className="w-full">
+            <Button type="submit" className="w-full" onSubmit={handleEmailLogin}>
               Sign In
             </Button>
           </form>
