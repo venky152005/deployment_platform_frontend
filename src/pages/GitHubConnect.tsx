@@ -36,8 +36,9 @@ const GitHubConnect = () => {
           }
         });
         if (res.status === 200) {
-          const data = res.data;
-          setRepos(Array.isArray(data) ? data : []);
+          const payload = res.data;
+          const list = Array.isArray(payload?.data) ? payload.data : [];
+          setRepos(list);
         } else {
           throw new Error(`Failed to fetch repos: ${res.status}`);
         }
@@ -112,19 +113,20 @@ const GitHubConnect = () => {
                             </a>
                             <button
                               className="rounded bg-primary px-3 py-1 text-sm text-white disabled:opacity-60"
-                              disabled={creatingHookRepo !== null}
+                              disabled={creatingHookRepo === r.name}
                               onClick={async () => {
                                 try {
                                   setCreatingHookRepo(r.name);
-                                  // Call backend API to create webhook for this repo
-                                  const payload = { repFullName: r.name };
+                                  // Use full_name when provided (owner/name), otherwise fall back to name
+                                  const repoIdentifier = (r as any).full_name ?? r.name;
+                                  const payload = { repoName: repoIdentifier };
                                   const resp = await axios.post(`${API_URL}/api/create/webhook`, payload, {
                                     headers: { Authorization: `Bearer ${token}` },
                                   });
 
                                   if (resp.status === 200 || resp.status === 201) {
-                                    toast({ title: "Webhook created", description: `Webhook created for ${r.name}` });
-                                    navigate(`/dashboard?repo=${encodeURIComponent(r.name)}`);
+                                    toast({ title: "Webhook created", description: `Webhook created for ${repoIdentifier}` });
+                                    navigate(`/dashboard?repo=${encodeURIComponent(repoIdentifier)}`);
                                   } else {
                                     toast({ title: "Failed", description: `Failed to create webhook (${resp.status})` });
                                   }
