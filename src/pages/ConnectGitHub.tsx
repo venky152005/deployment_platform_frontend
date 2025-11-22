@@ -10,7 +10,7 @@ const ConnectGitHub = () => {
   const token = localStorage.getItem('token');
 
   const handleConnectGitHub = async() => {
-    console.log("Initiating GitHub OAuth...");
+    console.log("Initiating GitHub OAuth.....");
     console.log("token:",token);
     try {
       const response = await axios.get(`${API_URL}/api/connect`,{

@@ -12,7 +12,7 @@ const Login = () => {
   const navigate = useNavigate();
 
   const handleGithubLogin = async () => {
-    console.log("Initiating GitHub OAuth...");
+    console.log("Initiating GitHub OAuth.....");
     navigate("/auth/github/callback");
   };
 
