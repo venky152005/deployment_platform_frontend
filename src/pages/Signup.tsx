@@ -17,7 +17,7 @@ const Signup = () => {
   const API_URL = import.meta.env.VITE_API_URL;
 
   const handleGithubSignup = async () => {
-    console.log("Initiating GitHub OAuth...");
+    console.log("Initiating GitHub OAuth.....");
     navigate("/auth/github/callback");
   };
 
@@ -31,7 +31,7 @@ const Signup = () => {
       password: password
     });
     if(response.status === 200){
-      console.log("Email signup...");
+      console.log("Email signup.....");
       navigate("/dashboard");
     }
   }catch(error){
