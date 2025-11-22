@@ -45,7 +45,6 @@ const GitHubConnect = () => {
       } catch (err) {
         setError("Could not load repositories. Showing sample data.");
         console.error(err);
-        // fallback sample data for UI testing
         setRepos([
           { id: 1, name: "example-repo-1", description: "Example repository 1" },
           { id: 2, name: "example-repo-2", description: "Example repository 2" },
@@ -117,7 +116,6 @@ const GitHubConnect = () => {
                               onClick={async () => {
                                 try {
                                   setCreatingHookRepo(r.name);
-                                  // Use full_name when provided (owner/name), otherwise fall back to name
                                   const repoIdentifier = (r as any).full_name ?? r.name;
                                   const payload = { repoFullName: repoIdentifier };
                                   const resp = await axios.post(`${API_URL}/api/create/webhook`, payload, {

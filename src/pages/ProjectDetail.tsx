@@ -7,7 +7,6 @@ import { useNavigate, useParams } from "react-router-dom";
 import { Separator } from "@/components/ui/separator";
 import { Badge } from "@/components/ui/badge";
 
-// Mock deployment data
 const mockDeployments = [
   {
     id: "d1",
@@ -46,7 +45,6 @@ const ProjectDetail = () => {
 
   const handleDeploy = () => {
     console.log("Triggering deployment...");
-    // fetch(`/deploy/trigger`, { method: 'POST', body: JSON.stringify({ repoId: id }) })
   };
 
   return (

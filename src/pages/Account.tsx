@@ -9,7 +9,6 @@ import { Badge } from "@/components/ui/badge";
 const Account = () => {
   const handleLogout = () => {
     console.log("Logging out...");
-    // Handle logout logic
   };
 
   return (

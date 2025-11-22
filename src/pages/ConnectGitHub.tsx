@@ -10,7 +10,6 @@ const ConnectGitHub = () => {
   const token = localStorage.getItem('token');
 
   const handleConnectGitHub = async() => {
-    // Placeholder for GitHub OAuth initiation
     console.log("Initiating GitHub OAuth...");
     console.log("token:",token);
     try {

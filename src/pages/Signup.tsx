@@ -18,7 +18,6 @@ const Signup = () => {
 
   const handleGithubSignup = async () => {
     console.log("Initiating GitHub OAuth...");
-    // Redirect to GitHub callback loading screen
     navigate("/auth/github/callback");
   };
 
@@ -38,8 +37,6 @@ const Signup = () => {
   }catch(error){
     console.error("Registration failed", error);
   }
-    // Placeholder API call: await fetch('/auth/signup', { method: 'POST', body: ... })
-    // On success, navigate to dashboard
   };
 
   return (

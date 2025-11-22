@@ -12,9 +12,7 @@ const Login = () => {
   const navigate = useNavigate();
 
   const handleGithubLogin = async () => {
-    // Placeholder for GitHub OAuth
     console.log("Initiating GitHub OAuth...");
-    // Redirect to GitHub callback loading screen
     navigate("/auth/github/callback");
   };
 
@@ -41,8 +39,6 @@ const Login = () => {
     } catch (error) {
       console.error("Login failed", error);
     }
-    // Placeholder API call: await fetch('/auth/login', { method: 'POST', body: ... })
-    // On success, navigate to dashboard
   };
 
   return (

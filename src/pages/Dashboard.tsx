@@ -3,9 +3,7 @@ import { Button } from "@/components/ui/button";
 import { RepoCard } from "@/components/deployment/RepoCard";
 import { DashboardLayout } from "@/components/layout/DashboardLayout";
 import { useNavigate } from "react-router-dom";
-import { toast } from "sonner";
 
-// Mock data
 const mockRepos = [
   {
     id: "1",
@@ -59,7 +57,6 @@ const Dashboard = () => {
   const navigate = useNavigate();
 
   const handleNewProject = () => {
-    // Navigate to GitHub connect screen
     navigate("/connect/github");
   };
 
