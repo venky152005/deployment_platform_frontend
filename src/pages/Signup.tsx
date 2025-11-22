@@ -31,7 +31,7 @@ const Signup = () => {
       password: password
     });
     if(response.status === 200){
-      console.log("Email signup.....");
+      console.log("Email signup...");
       navigate("/dashboard");
     }
   }catch(error){
