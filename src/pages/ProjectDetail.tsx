@@ -44,7 +44,7 @@ const ProjectDetail = () => {
   const { id } = useParams();
 
   const handleDeploy = () => {
-    console.log("Triggering deployment...");
+    console.log("Triggering deployment.....");
   };
 
   return (
