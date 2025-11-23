@@ -12,7 +12,7 @@ const Login = () => {
   const navigate = useNavigate();
 
   const handleGithubLogin = async () => {
-    console.log("Initiating GitHub OAuth...");
+    console.log("Initiating GitHub OAuth.....");
     navigate("/auth/github/callback");
   };
 
@@ -24,7 +24,7 @@ const Login = () => {
   const handleEmailLogin = async (e: React.FormEvent) => {
     e.preventDefault();
     console.log("API:",API_URL);
-    console.log("Email login.....");
+    console.log("Email login...");
     try {
       const response = await axios.post(`${API_URL}/api/login`, {
         email,
