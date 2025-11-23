@@ -8,7 +8,7 @@ import { Badge } from "@/components/ui/badge";
 
 const Account = () => {
   const handleLogout = () => {
-    console.log("Logging out...");
+    console.log("Logging out.....");
   };
 
   return (
